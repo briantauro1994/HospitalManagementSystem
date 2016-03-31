@@ -31,7 +31,7 @@ public class HomePage
         homepageframe.setExtendedState(JFrame.MAXIMIZED_BOTH);
         homepageframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //homepageframe.setSize(900,900);
-homepageframe.setBackground(Color.yellow);
+
         // WRAPPER 
         JPanel wrapper = new JPanel();
         wrapper.setLayout(null);
@@ -82,7 +82,7 @@ homepageframe.setBackground(Color.yellow);
         heading.setForeground(new Color(0, 255, 226));            
         heading.setBounds(screenSize.width-700,30,700,45);
 
-        JLabel heading1 = new JLabel("SIMPSONS MILITARY HOSPITAL");
+        JLabel heading1 = new JLabel("Akshaya MILITARY HOSPITAL");
         Font font1 = new Font("Garamond", Font.BOLD, 35);
         heading1.setFont(font1);
         heading1.setForeground(new Color(0, 126, 112));            
