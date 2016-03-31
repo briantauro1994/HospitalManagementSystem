@@ -31,7 +31,9 @@ public class HomePage
         homepageframe.setExtendedState(JFrame.MAXIMIZED_BOTH);
         homepageframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //homepageframe.setSize(900,900);
+JLabel bgimage = new JLabel(new ImageIcon("/home/shalom/NetBeansProjects/HospitalManagementSystem1/src/main/java/Images/death.jpg"));
 
+       homepageframe.setContentPane(bgimage);
         // WRAPPER 
         JPanel wrapper = new JPanel();
         wrapper.setLayout(null);
@@ -159,7 +161,7 @@ panel.setBackground(Color.WHITE);
         // LOGIN PANEL
         JPanel loginpanel = new JPanel();
         loginpanel.setLayout(null);		
-        loginpanel.setBounds(900, 130, 450, 450);
+        loginpanel.setBounds(470, 130, 450, 450);
          AbstractBorder brdr = new TextBubbleBorder(Color.GRAY,4,16,0);
         
         loginpanel.setBorder(brdr);
@@ -239,7 +241,7 @@ loginpanel.setBackground(Color.WHITE);
         JScrollPane pane = new JScrollPane(wrapper);
         homepageframe.add(pane);
 pane.requestFocus();
-
+homepageframe.add(loginpanel);
         // HOMEPAGE VISIBILITY
         homepageframe.setVisible(true);
     }
