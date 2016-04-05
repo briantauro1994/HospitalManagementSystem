@@ -99,7 +99,14 @@ JLabel bgimage = new JLabel(new ImageIcon("/home/shalom/NetBeansProjects/Hospita
         panel.setBounds(50,5,100,90);
 panel.setBackground(Color.WHITE);
 
+
+
+
+
+
+
         //FOOTER JPANEL
+
         JButton home = new JButton("Home");
         home.addActionListener(new ActionListener()
         {
@@ -178,9 +185,19 @@ loginpanel.setBackground(Color.WHITE);
         password.setBounds(100,210,300,50);
 
         JButton loginbutton = new JButton("LOGIN");
-        loginbutton.setBounds(150,320,200,50);
-
+        JButton signupbutton = new JButton("SIGN UP");
+        loginbutton.setBounds(15,320,200,50);
+signupbutton.setBounds(225,320,200,50);
         //LOGIN ACTION
+signupbutton.addActionListener(new ActionListener() {
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		 homepageframe.setVisible(false);
+		new Registration().setVisible(true);
+	}
+});
         loginbutton.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent ae)
@@ -231,6 +248,7 @@ loginpanel.setBackground(Color.WHITE);
         loginpanel.add(username);
         loginpanel.add(password);
         loginpanel.add(loginbutton);
+        loginpanel.add(signupbutton);
         wrapper.add(loginpanel);
 
         homepageframe.add(wrapper);	

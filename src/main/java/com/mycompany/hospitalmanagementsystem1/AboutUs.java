@@ -154,6 +154,40 @@ public class AboutUs
         headerpanel.add(heading);
         headerpanel.add(heading1);
         headerpanel.add(panel);
+        JButton home = new JButton("Home");
+        home.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent ae)
+            {
+             aboutusframe.setVisible(false);
+                new HomePage();
+            }
+        });
+        home.setBounds((screenSize.width/2)-140,650,100,30);
+        aboutusframe.add(home);
+        JButton aboutus = new JButton("About Us");
+        aboutus.setBounds((screenSize.width/2)-40,650,100,30);
+        aboutus.addActionListener(new ActionListener()
+        {
+           public void actionPerformed(ActionEvent ae)
+           {
+        	   aboutusframe.setVisible(false);
+               new AboutUs();
+           }
+        });
+        aboutusframe.add(aboutus);
+        JButton contactus = new JButton("Contact Us");
+        contactus.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent ae)
+            {
+            	 aboutusframe.setVisible(false);
+            	 
+                new ContactUs();
+            }
+        });
+        contactus.setBounds((screenSize.width/2)+60,650,100,30);
+       aboutusframe.add(contactus);
 
         //add mainbodypanel
         

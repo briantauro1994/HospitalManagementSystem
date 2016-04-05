@@ -382,7 +382,7 @@ class MenuPage
                 String name = rs.getString("DocName");  
                 String specialisation = rs.getString("Specialisation");
                 String address = rs.getString("Address");
-                String age = rs.getString("PNumber");
+                String age = rs.getString("phoneno");
                 doctormodel.addRow(new Object[]{id, name, specialisation, address, age});
                 
             }
