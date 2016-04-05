@@ -204,6 +204,31 @@ signupbutton.addActionListener(new ActionListener() {
 		new DoctorRegistration().setVisible(true);
 	}
 });
+JButton employee = new JButton("Employee LOGIN");
+JButton doctor = new JButton("Doctor Login");
+employee.setBounds(0,0,225,40);
+doctor.setBounds(225,0,225,40);
+employee.setBackground(Color.WHITE);
+doctor.setBackground(Color.WHITE);
+employee.addActionListener(new ActionListener() {
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+	homepageframe.setVisible(false);
+		new HomePage();
+		
+	}
+});
+doctor.addActionListener(new ActionListener() {
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		homepageframe.setVisible(false);
+		new DoctorLogin();
+		
+	}
+});
+
         loginbutton.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent ae)
@@ -247,7 +272,8 @@ signupbutton.addActionListener(new ActionListener() {
         wrapper.add(mainpanel);	
         
        password.setFocusable(true);
-        
+loginpanel.add(doctor);
+loginpanel.add(employee);
        
         
         loginpanel.add(loginlabel);

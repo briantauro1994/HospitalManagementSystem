@@ -174,6 +174,31 @@ panel.setBackground(Color.WHITE);
         loginpanel.setBorder(brdr);
         
 loginpanel.setBackground(Color.WHITE);
+JButton employee = new JButton("Employee LOGIN");
+JButton doctor = new JButton("Doctor Login");
+employee.setBounds(0,0,225,40);
+doctor.setBounds(225,0,225,40);
+employee.setBackground(Color.WHITE);
+doctor.setBackground(Color.WHITE);
+employee.addActionListener(new ActionListener() {
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+	homepageframe.setVisible(false);
+		new HomePage();
+		
+	}
+});
+doctor.addActionListener(new ActionListener() {
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		homepageframe.setVisible(false);
+		new DoctorLogin();
+		
+	}
+});
+
         JLabel loginlabel = new JLabel("LOGIN");
         loginlabel.setBounds(200,0,300,100);
         loginlabel.setFont(new Font("TimesNewRoman",Font.BOLD,18));                
@@ -242,7 +267,8 @@ signupbutton.addActionListener(new ActionListener() {
         
        password.setFocusable(true);
         
-       
+       loginpanel.add(employee);
+       loginpanel.add(doctor);
         
         loginpanel.add(loginlabel);
         loginpanel.add(username);
