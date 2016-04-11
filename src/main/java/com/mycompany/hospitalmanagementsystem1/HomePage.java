@@ -244,8 +244,7 @@ signupbutton.addActionListener(new ActionListener() {
                     }
                     else
                        JOptionPane.showMessageDialog(null, "Incorrect Login Credentials");        
- homepageframe.setVisible(false);
-			new MenuPage();
+ 
                 }
             }
         });
