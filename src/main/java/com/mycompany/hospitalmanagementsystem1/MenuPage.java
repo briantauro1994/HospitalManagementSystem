@@ -12,6 +12,8 @@ package com.mycompany.hospitalmanagementsystem1;
 import DatabaseConnection.DbConnection;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
@@ -49,7 +51,7 @@ class MenuPage
     
     int billamountint;
     double totalsum1=0;
-
+    JFileChooser fc = null;
     MenuPage()
     {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -773,20 +775,189 @@ class MenuPage
 
         
         
-        
-        
+
         
         
         
         panel5.add(outform1);
         
-//Logout
+//Images
 	 JPanel panel6 = new JPanel();
+	
+     fc = new JFileChooser();
+     
         panel6.setOpaque(true);
         panel6.setLayout(null);
         //panel3.setBackground(Color.blue);
         panel6.setBounds(15,90,screenSize.width-10,screenSize.height-(screenSize.height/6));
+        JPanel outform11= new JPanel();
+        outform11.setLayout(null);
+        outform11.setBounds(0,25,810,460);
+        outform11.setBorder(new EtchedBorder(EtchedBorder.RAISED)); 
+        
+        JLabel outlabel11 = new JLabel("Enter Details of Out Patient");
+        outlabel11.setBounds(140,20,300,40);
+         final JTextField outid11 = new HintTextField("Enter id");
+        outid11.setBounds(80,70,300,40);
+        JButton outbutton21 = new JButton("Check");
+        outbutton2.setBounds(400,70,100,40);
+       
+        final JTextField outillness11 = new HintTextField("Enter Illness");
+        outillness11.setBounds(80,120,300,40);
+        final JTextField loc = new HintTextField("Location of Image");
+       loc.setBounds(80,170,300,40);
+        JButton browse = new JButton("Browse");
+        browse.setBounds(100,220,250,40);
+        JButton save = new JButton("Save");
+        save.setBounds(400,220,250,40);
+        outform11.add(outlabel1);
+        
+        outform11.add(outillness11);
+        outform11.add(browse);
+        outform11.add(outid11);
+        outform11.add(loc);
+        outform11.add(browse);
+        outform11.add(save);
+       browse.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			 int returnVal = fc.showOpenDialog(outform11);
 
+		      if (returnVal == JFileChooser.APPROVE_OPTION) {
+		        File file = fc.getSelectedFile();
+		        //This is where a real application would open the file.
+		      //  log.append("Opening: " + file.getName() + "." + newline);
+		    loc.setText(file.getAbsolutePath());
+		      } else {
+		     //   log.append("Open command cancelled by user." + newline);
+		      }
+		    //  log.setCaretPosition(log.getDocument().getLength());
+
+			
+		}
+	});  
+        save.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent ae)
+            {
+                  PreparedStatement pstmt = null;
+           
+                String query2= "insert into  patientimages(pid,location) values(?, ?)";
+                
+                   try 
+		{
+                    Connection conn=new DbConnection().connect();
+                    pstmt= conn.prepareStatement(query2);
+                  pstmt.setString(1, outid11.getText()); 
+                  pstmt.setString(2, fc.getSelectedFile().getAbsolutePath());
+                  
+                     pstmt.executeUpdate(); // execute insert statement
+                  JOptionPane.showMessageDialog(null, "Added Sucesfully");
+                    
+                    
+                }
+                   catch(Exception e)
+                       
+                   {
+                       System.out.println(e.getMessage());
+                   }
+                
+                
+            }
+        });
+        panel6.add(outform11);
+        
+        //panel 7
+   	 JPanel panel7 = new JPanel();
+ 	
+     fc = new JFileChooser();
+     
+        panel7.setOpaque(true);
+        panel7.setLayout(null);
+        //panel3.setBackground(Color.blue);
+        panel7.setBounds(15,90,screenSize.width-10,screenSize.height-(screenSize.height/6));
+        JPanel outform7= new JPanel();
+        outform7.setLayout(null);
+        outform7.setBounds(0,25,810,460);
+        outform7.setBorder(new EtchedBorder(EtchedBorder.RAISED)); 
+        
+        JLabel outlabel7 = new JLabel("Enter Details of Out Patient");
+        outlabel7.setBounds(140,20,300,40);
+         final JTextField outid7 = new HintTextField("Enter id");
+        outid7.setBounds(80,70,300,40);
+        JButton outbutton7 = new JButton("Check");
+        outbutton7.setBounds(400,70,100,40);
+       
+        final JTextField outillness7 = new HintTextField("Enter Illness");
+        outillness7.setBounds(80,120,300,40);
+        final JTextField loc7 = new HintTextField("Location of Image");
+       loc7.setBounds(80,170,300,40);
+        JButton browse7 = new JButton("Browse");
+        browse7.setBounds(100,220,250,40);
+        JButton save7 = new JButton("Save");
+        save7.setBounds(400,220,250,40);
+        outform7.add(outlabel1);
+        
+        outform7.add(outillness7);
+        outform7.add(browse7);
+        outform7.add(outid7);
+        outform7.add(loc7);
+        outform7.add(browse7);
+        outform7.add(save7);
+       browse7.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			 int returnVal = fc.showOpenDialog(outform11);
+
+		      if (returnVal == JFileChooser.APPROVE_OPTION) {
+		        File file = fc.getSelectedFile();
+		        //This is where a real application would open the file.
+		      //  log.append("Opening: " + file.getName() + "." + newline);
+		    loc7.setText(file.getAbsolutePath());
+		      } else {
+		     //   log.append("Open command cancelled by user." + newline);
+		      }
+		    //  log.setCaretPosition(log.getDocument().getLength());
+
+			
+		}
+	});  
+        save7.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent ae)
+            {
+                  PreparedStatement pstmt = null;
+                 
+                String query2= "insert into  patientvideos(pid,location) values(?, ?)";
+                
+                   try 
+		{
+                	   String st="http://10.4.5.139:8080/HospitalManagementServer/images/";
+                    Connection conn=new DbConnection().connect();
+                    pstmt= conn.prepareStatement(query2);
+                  pstmt.setString(1, outid7.getText()); 
+                  pstmt.setString(2, st+fc.getSelectedFile().getName());
+                  
+                     pstmt.executeUpdate(); // execute insert statement
+                  JOptionPane.showMessageDialog(null, "Added Sucesfully");
+                    
+                    
+                }
+                   catch(Exception e)
+                       
+                   {
+                	   JOptionPane.showMessageDialog(null, "boom");
+                       System.out.println(e.getMessage());
+                   }
+                
+                
+            }
+        });
+        panel7.add(outform7);
+        
+        
         //add panels to tabpane
         tabpane.setTabPlacement(SwingConstants.TOP);
         
@@ -797,7 +968,8 @@ class MenuPage
         tabpane.add(panel3,"<html><h1><b>DOCTOR Records</html>");
         tabpane.add(panel5,"<html><h1><b>Existing Patient<br>");
         tabpane.add(panel4,"<html><h1><b>BILL Payments<br>");
-           tabpane.add(panel6,"<html><h1><b> LOGOUT");
+           tabpane.add(panel6,"<html><h1><b> Images");
+           tabpane.add(panel7,"<html><h1><b> Videos");
     //    tabpane.add(panel5,"<html>N<br>E<br>W<br>P<br>A<br>T<br>I<br>E<br>N<br>T</html>");
         
 //        menupageframe.pack();

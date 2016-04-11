@@ -29,11 +29,7 @@ public class ContactUs
         contactusframe.setVisible(true);
         contactusframe.setLayout(null);
 
-        //create Background Image for JFrame
-        JLabel bgimage = new JLabel(new ImageIcon("Images//death.jpg"));
-
-        contactusframe.setContentPane(bgimage);
-
+        
         
         // CREATE HEADERPANEL JPANEL
         JPanel headerpanel = new JPanel();
@@ -49,13 +45,13 @@ public class ContactUs
         headerpanelsh.setBackground(new Color(200, 200, 200));            
 
         // CREATE HEADING JLABEL
-        JLabel heading = new JLabel("Akshaya MILITARY HOSPITAL");
+        JLabel heading = new JLabel("AKSHAYA MILITARY HOSPITAL");
         Font font = new Font("Garamond", Font.BOLD, 35);
         heading.setFont(font);
         heading.setForeground(new Color(0, 255, 226));            
         heading.setBounds(screenSize.width-700,30,700,45);
 
-        JLabel heading1 = new JLabel("Akshaya MILITARY HOSPITAL");
+        JLabel heading1 = new JLabel("AKSHAYA MILITARY HOSPITAL");
         Font font1 = new Font("Garamond", Font.BOLD, 35);
         heading1.setFont(font1);
         heading1.setForeground(new Color(0, 126, 112));            
@@ -114,7 +110,7 @@ public class ContactUs
 
         //create map image
         JLabel map = new JLabel();
-		ImageIcon icon_map = new ImageIcon("Images//map.jpg");
+		ImageIcon icon_map = new ImageIcon("/home/shalom/git/HospitalManagementSystem/src/main/java/Images/map.jpg");
         Image img_map = icon_map.getImage();
         Image newimg_map = img_map.getScaledInstance(350, 350, Image.SCALE_SMOOTH ) ;  
         ImageIcon logoicon_map = new ImageIcon(newimg_map);
@@ -124,9 +120,9 @@ public class ContactUs
         map.setBounds(7*screenSize.width/10,15,350,350);
 
         //create address JLabel
-		String text2 = "Address : Medical College Ulloor Road, Thiruvananthapuram, Hosur 1111";
+		String text2 = "Address : AKSHAYA MILITARY HOSPITAL";
 		String text3 = "Phone No. : 9159813734";
-		String text4 = "Email ID : Akshayafreak@gmail.com";
+		String text4 = "Email ID : Amhospital@gmail.com";
 		JTextArea address = new JTextArea();
 		address.setFont(new Font("TimesNewRoman",Font.PLAIN,20));
 		address.setText(text2);
@@ -139,7 +135,7 @@ public class ContactUs
 		address.append(System.getProperty("line.separator"));
         
         address.setBackground(new Color(0,0,0,150));
-		address.setForeground(Color.white);
+		address.setForeground(Color.BLACK);
         address.setBounds(10,100,screenSize.width/3,screenSize.height/3-100);
 		address.setLineWrap(true);
 		address.setWrapStyleWord(true);
@@ -151,7 +147,7 @@ public class ContactUs
 
         JLabel emaillabel = new JLabel(text);
         emaillabel.setFont(new Font("TimesNewRoman",Font.BOLD,17));
-        emaillabel.setForeground(Color.white);
+        emaillabel.setForeground(Color.BLACK);
 
         emaillabel.setOpaque(true);
         emaillabel.setBackground(new Color(0,0,0,0));
@@ -170,7 +166,7 @@ public class ContactUs
 
         JLabel commentslabel = new JLabel(text1);
         commentslabel.setFont(new Font("TimesNewRoman",Font.BOLD,17));
-        commentslabel.setForeground(Color.white);
+        commentslabel.setForeground(Color.BLACK);
 
         commentslabel.setOpaque(true);
         commentslabel.setBackground(new Color(0,0,0,0));

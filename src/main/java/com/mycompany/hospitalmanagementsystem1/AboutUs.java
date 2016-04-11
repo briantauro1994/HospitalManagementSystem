@@ -82,13 +82,13 @@ public class AboutUs
         //create Founder1 image
         JLabel founder1 = new JLabel();
 
-        ImageIcon iconfounder1 = new ImageIcon("Images//founder1.jpg");
+        ImageIcon iconfounder1 = new ImageIcon("/home/shalom/git/HospitalManagementSystem/src/main/java/Images/Brian.jpg");
         Image imgfounder1 = iconfounder1.getImage();
         Image newimg1 = imgfounder1.getScaledInstance(250, 250, Image.SCALE_SMOOTH ) ;  
         ImageIcon logoicon1 = new ImageIcon(newimg1);
         founder1.setIcon(logoicon1);
 
-        JLabel founder1name = new JLabel("Cofounder : Dr.Vivek C S");
+        JLabel founder1name = new JLabel("Founder : Dr.BRIAN");
         founder1name.setFont(new Font("TimesNewRoman",Font.PLAIN,20));
         founder1name.setBounds(8*screenSize.width/10,270,250,20);
 
@@ -99,13 +99,13 @@ public class AboutUs
         //create Founder2 image
         JLabel founder2 = new JLabel();
 
-        ImageIcon iconfounder2 = new ImageIcon("Images//founder2.jpg");
+        ImageIcon iconfounder2 = new ImageIcon("/home/shalom/git/HospitalManagementSystem/src/main/java/Images/Akshaya.jpg");
         Image imgfounder2 = iconfounder2.getImage();
         Image newimg2 = imgfounder2.getScaledInstance(250, 250, Image.SCALE_SMOOTH ) ;  
         ImageIcon logoicon2 = new ImageIcon(newimg2);
         founder2.setIcon(logoicon2);
 
-        JLabel founder2name = new JLabel("Cofounder : Dr.Akshaya S");
+        JLabel founder2name = new JLabel("Cofounder : Dr.AKSHAYA");
         founder2name.setFont(new Font("TimesNewRoman",Font.PLAIN,20));
         founder2name.setBackground(Color.white);
         founder2name.setBounds(8*screenSize.width/10,270+280,250,20);

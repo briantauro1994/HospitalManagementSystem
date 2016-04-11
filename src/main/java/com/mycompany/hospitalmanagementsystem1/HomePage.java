@@ -31,7 +31,7 @@ public class HomePage
         homepageframe.setExtendedState(JFrame.MAXIMIZED_BOTH);
         homepageframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //homepageframe.setSize(900,900);
-JLabel bgimage = new JLabel(new ImageIcon("/home/shalom/NetBeansProjects/HospitalManagementSystem1/src/main/java/Images/death.jpg"));
+JLabel bgimage = new JLabel(new ImageIcon("/home/shalom/git/HospitalManagementSystem/src/main/java/Images/aboutus.jpg"));
 
        homepageframe.setContentPane(bgimage);
         // WRAPPER 

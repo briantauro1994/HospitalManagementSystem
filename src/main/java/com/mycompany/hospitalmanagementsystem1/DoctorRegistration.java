@@ -274,7 +274,27 @@ add(tf10);
                   ps.setString(9,s12 );
 
                   ps.executeUpdate();
-
+                  Connection con1 = new DbConnection().connect();
+                  
+                /*  String h="CREATE TABLE patientHistory_"+count+" " +
+                          "(id INT NULL AUTO_INCREMENT, " +
+                          "patId INT,"+
+                         " Illness VARCHAR(255), " + 
+                         " Prescription VARCHAR(255),PRIMARY KEY(id)"
+                                                + ")";
+                  */
+                  
+                  
+                  String query = "CREATE TABLE doctor_"+s7+" " +
+                          "(id INT NULL AUTO_INCREMENT, " +
+                          "did VARCHAR(255)," + 
+                       
+                           "source VARCHAR(2255),"+
+                           "message VARCHAR(2255),PRIMARY KEY(id)"
+                                                 + ")";
+                                     
+                  PreparedStatement ps1=con1.prepareStatement(query);
+                 ps1.executeUpdate();
                   x++;
 
                   if (x > 0)
