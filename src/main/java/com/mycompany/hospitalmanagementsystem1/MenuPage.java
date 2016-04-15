@@ -13,12 +13,18 @@ import DatabaseConnection.DbConnection;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.plaf.LabelUI;
 
 
@@ -40,7 +46,7 @@ class MenuPage
     JTable billtable;
      JTable pattable;
     JScrollPane billdisplayscroll,patdisplayscroll;
-    
+    Image img;
 
     String name;
     String address;
@@ -61,7 +67,8 @@ class MenuPage
         final JFrame menupageframe = new JFrame("Menu Page");
         menupageframe.setExtendedState(JFrame.MAXIMIZED_BOTH);
         menupageframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        menupageframe.setVisible(true);
+     
+        menupageframe.setBackground(Color.gray);
         menupageframe.setLayout(null);
 
       
@@ -71,12 +78,12 @@ class MenuPage
         headerpanel.setBounds(10,10,screenSize.width-20,100);
         //headerpanel.setBackground(Color.cyan);
         headerpanel.setBorder(new BevelBorder(BevelBorder.RAISED)); 
-
+headerpanel.setBackground(Color.white);
         // CREATE HEADERPANELSH JPANEL
         JPanel headerpanelsh = new JPanel();
         headerpanelsh.setLayout(null);
         headerpanelsh.setBounds(16,16,screenSize.width-20,100);
-        headerpanelsh.setBackground(new Color(200, 200, 200));            
+        headerpanelsh.setBackground(Color.gray);            
 
         // CREATE HEADING JLABEL
         JLabel heading = new JLabel("Akshaya MILITARY HOSPITAL");
@@ -99,7 +106,7 @@ class MenuPage
         panel.add( label, BorderLayout.CENTER );
         panel.setBounds(50,5,100,90);
         
-
+panel.setBackground(Color.gray);
         //add headerpanel
         menupageframe.add(headerpanel);
         menupageframe.add(headerpanelsh);
@@ -110,6 +117,7 @@ class MenuPage
         
         //FOOTER JPANEL
         JButton home = new JButton("Home");
+        home.setBackground(Color.white);
         home.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent ae)
@@ -118,10 +126,11 @@ class MenuPage
                 new HomePage();
             }
         });
-        home.setBounds((screenSize.width/2)-140,650,100,30);
+        home.setBounds((screenSize.width/2),650,100,30);
         menupageframe.add(home);
         JButton aboutus = new JButton("About Us");
-        aboutus.setBounds((screenSize.width/2)-40,650,100,30);
+        aboutus.setBackground(Color.white);
+        aboutus.setBounds((screenSize.width/2)+100,650,100,30);
         aboutus.addActionListener(new ActionListener()
         {
            public void actionPerformed(ActionEvent ae)
@@ -132,6 +141,7 @@ class MenuPage
         });
         menupageframe.add(aboutus);
         JButton contactus = new JButton("Contact Us");
+        contactus.setBackground(Color.white);
         contactus.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent ae)
@@ -140,7 +150,7 @@ class MenuPage
                 new ContactUs();
             }
         });
-        contactus.setBounds((screenSize.width/2)+60,650,100,30);
+        contactus.setBounds((screenSize.width/2)+200,650,100,30);
         menupageframe.add(contactus);
 
 
@@ -148,27 +158,42 @@ class MenuPage
         mainbodypanel = new JPanel();
         mainbodypanel.setLayout(null);
         mainbodypanel.setBounds(5,110,screenSize.width-10,screenSize.height-(screenSize.height/4));
-        mainbodypanel.setBackground(new Color(255,255,255,255));
+        mainbodypanel.setBackground(Color.gray);
 
 
         //create Jtabbedpane
         JTabbedPane tabpane = new JTabbedPane();
         tabpane.setBounds(15,100,screenSize.width-10,screenSize.height-(screenSize.height/6));
         menupageframe.add(tabpane);
-
+        try {
+			 img=ImageIO.read(new File("/home/shalom/git/HospitalManagementSystem/src/main/java/Images/aboutus.jpg"));
+		} catch (IOException e1) {
+	// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
         // OUTPATIENT start
-        JPanel panel1 = new JPanel();
-        //panel1.setBackground(Color.red);
+        JPanel panel1 = new JPanel()
+        		{
+        	/*protected void paintComponent(Graphics g)
+        	{
+        		super.paintComponent(g);
+        		g.drawImage(img, 0, 0, null);
+        	}*/
+        		};
+       
+panel1.setLayout(null);
         panel1.setOpaque(true);
         panel1.setBounds(15,100,screenSize.width-10,screenSize.height-(screenSize.height/6));
-        panel1.setLayout(null);
+     
+       
         panel1.requestFocus();
         // FORM start
+        
         JPanel outform = new JPanel();
         outform.setLayout(null);
-        outform.setBounds(410,25,450,480);
+        outform.setBounds(310,25,450,480);
         outform.setBorder(new EtchedBorder(EtchedBorder.RAISED)); 
-        
+outform.setBackground(Color.white);        
         JLabel outlabel = new JLabel("Enter Details of Out Patient");
         outlabel.setBounds(140,20,300,40);
         final JTextField outname = new HintTextField("Enter Name");
@@ -187,7 +212,7 @@ class MenuPage
         prescription.setBounds(80,370,300,40);
         JButton outbutton = new JButton("Submit");
         outbutton.setBounds(100,420,250,40);
-        
+        outbutton.setBackground(Color.white);
         outform.add(outlabel);
         outform.add(outname);
         outform.add(outname);
@@ -277,7 +302,14 @@ class MenuPage
         // OUTPATIENT end
         
         // PATIENT DB START
-        JPanel panel2 = new JPanel();
+        JPanel panel2 = new JPanel()
+        		{
+        	/*protected void paintComponent(Graphics g)
+        	{
+        		super.paintComponent(g);
+        		g.drawImage(img, 0, 0, null);
+        	}*/
+        		};
         panel2.setOpaque(true);
         //panel2.setBackground(Color.green);
         panel2.setBounds(15,90,screenSize.width-10,screenSize.height-(screenSize.height/6));
@@ -285,7 +317,8 @@ class MenuPage
         panel2.setLayout(null);
         
         JButton editpatient = new JButton("Edit Records");
-        editpatient.setBounds(550,15,150,40);        
+        editpatient.setBounds(550,15,150,40);
+        editpatient.setBackground(Color.white);
         editpatient.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent ae)
@@ -338,6 +371,7 @@ class MenuPage
             e.printStackTrace();                
             } 
         JTable patienttable = new JTable(patientmodel);
+        patienttable.setBackground(Color.white);
         JScrollPane patientpane = new JScrollPane(patienttable);
         patientpane.setBounds(10,70,1240,420);
         panel2.add(editpatient);
@@ -348,7 +382,14 @@ class MenuPage
         
         
         // DOCOTORS DB start
-        JPanel panel3 = new JPanel();
+        JPanel panel3 = new JPanel()
+        		{
+        	/*protected void paintComponent(Graphics g)
+        	{
+        		super.paintComponent(g);
+        		g.drawImage(img, 0, 0, null);
+        	}*/
+        		};
         panel3.setOpaque(true);
         panel3.setLayout(null);
         //panel3.setBackground(Color.blue);
@@ -356,6 +397,7 @@ class MenuPage
         
         JButton editdoctor = new JButton("Edit Records");
         editdoctor.setBounds(550,15,150,40);
+        editdoctor.setBackground(Color.WHITE);
         editdoctor.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent ae)
@@ -393,19 +435,27 @@ class MenuPage
             e.printStackTrace();                
             } 
         JTable doctortable = new JTable(doctormodel);
+        doctortable.setBackground(Color.white); 
         JScrollPane doctorpane = new JScrollPane(doctortable);
         doctorpane.setBounds(10,70,1240,420);
         panel3.add(editdoctor);
         panel3.add(doctorpane);
         panel3.setVisible(true);
-        
+       
         // DOCOTORS DB end
         
         
 
         
         //BILL PAYMENT START
-        final JPanel panel4 = new JPanel();
+        final JPanel panel4 = new JPanel()
+        		{
+        	/*protected void paintComponent(Graphics g)
+        	{
+        		super.paintComponent(g);
+        		g.drawImage(img, 0, 0, null);
+        	}*/
+        		};
         panel4.setLayout(null);
         panel4.setOpaque(true);
 //        panel4.setBackground(Color.yellow);
@@ -415,18 +465,18 @@ class MenuPage
 	// ID PANEL start	
         JPanel billidpanel = new JPanel();
         billidpanel.setLayout(null);
-        billidpanel.setBounds(450,10,500,50);
-
+        billidpanel.setBounds(350,10,500,50);
+billidpanel.setBackground(Color.white);
         final JTextField billidfield = new JTextField("Enter id");
         JButton billidbutton = new JButton("Show");
-        billidfield.setBounds(5,5,200,30);
-        billidbutton.setBounds(300,5,200,30);
+        billidfield.setBounds(10,5,200,30);
+        billidbutton.setBounds(250,5,220,30);
 
         billidpanel.add(billidfield);
         billidpanel.add(billidbutton);
 	
         // ID PANEL end
-		
+		billidbutton.setBackground(Color.white);
 		
         // BILL ENTRY PANEL start
 
@@ -438,15 +488,15 @@ class MenuPage
 
         JButton bill_submit = new JButton("Add");
         bill_submit.setBounds(240,260,75,30);
-
+bill_submit.setBackground(Color.white);
         JButton total_amt = new JButton("Show Total Amount");
         total_amt.setBounds(180,320,230,30);
-
+total_amt.setBackground(Color.white);
         final JPanel billentrypanel = new JPanel();
         billentrypanel.setLayout(null);
-        billentrypanel.setBounds(20,100,600,400);
+        billentrypanel.setBounds(0,100,560,400);
         billentrypanel.setBorder(new EtchedBorder(EtchedBorder.RAISED));
-		
+		billentrypanel.setBackground(Color.white);
 		
 	bill_submit.addActionListener(new ActionListener()
         {
@@ -501,7 +551,7 @@ class MenuPage
                String patient_sex = r.getString("Sex");
                
                
-
+billentrypanel.setBackground(Color.white);
                patient_name_label = new JTextField("Patient Name: "+patient_name);
                billentrypanel.add(patient_name_label);
                patient_name_label.setBounds(20,20,150,30);
@@ -510,7 +560,7 @@ class MenuPage
                patient_name_label.setBounds(220,20,150,30);
                patient_name_label = new JTextField("Patient Sex: "+patient_sex);
                billentrypanel.add(patient_name_label);
-               patient_name_label.setBounds(420,20,150,30);
+               patient_name_label.setBounds(380,20,150,30);
 
                 // FOR PATIENT NAME END
                 }
@@ -544,12 +594,15 @@ class MenuPage
                         billtablemodel.addRow(new Object[]{billitem, billamount});
                         
                     }
+                    
                     billtable = new JTable(billtablemodel);
+                    billtable.setBackground(Color.white);
 //                    billtablemodel.fireTableDataChanged();
                     billdisplayscroll = new JScrollPane(billtable);
                     billdisplayscroll.setBounds(20,20,470,280);
                     billdisplaypanel.add(billdisplayscroll);
-                }
+        billdisplaypanel.setBackground(Color.white);        
+		}
                 catch(Exception e)
                 {
                     e.printStackTrace();                
@@ -559,11 +612,12 @@ class MenuPage
         });
         
         
-        
+        total_amt.setBackground(Color.white);
         total_amt.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent ae)
             {
+            	billdisplaypanel.setVisible(true);
                 billtablemodel.fireTableDataChanged();
                 billtable.repaint();
                 
@@ -625,10 +679,10 @@ class MenuPage
         billdisplaypanel.setLayout(null);
         //billdisplaypanel.setBackground(Color.red);
         panel4.add(billdisplaypanel);
-        billdisplaypanel.setBounds(700,100,500,400);
+        billdisplaypanel.setBounds(580,100,500,400);
         billdisplaypanel.setBorder(new EtchedBorder(EtchedBorder.RAISED));
-		
-
+		billdisplaypanel.setVisible(false);
+billdisplaypanel.setBackground(Color.white);
         // BILL DISPLAY PANEL end
 
         billentrypanel.add(bill_item);
@@ -645,7 +699,14 @@ class MenuPage
 		//BILL PAYMENT END
                 
                 //New Patient
-		 JPanel panel5 = new JPanel();
+		 JPanel panel5 = new JPanel()
+				 {
+			/* protected void paintComponent(Graphics g)
+			 {
+			 	super.paintComponent(g);
+			 	g.drawImage(img, 0, 0, null);
+			 }*/
+				 };
           
         //panel1.setBackground(Color.red);
         panel5.setOpaque(true);
@@ -654,23 +715,23 @@ class MenuPage
         // FORM start
         JPanel outform1 = new JPanel();
         outform1.setLayout(null);
-        outform1.setBounds(0,25,510,460);
+        outform1.setBounds(0,25,510,280);
         outform1.setBorder(new EtchedBorder(EtchedBorder.RAISED)); 
-        
+        outform1.setBackground(Color.white);
         JLabel outlabel1 = new JLabel("Enter Details of Out Patient");
         outlabel1.setBounds(140,20,300,40);
          final JTextField outid = new HintTextField("Enter id");
         outid.setBounds(80,70,300,40);
         JButton outbutton2 = new JButton("Check");
         outbutton2.setBounds(400,70,100,40);
-       
+       outbutton2.setBackground(Color.white);
         final JTextField outillness1 = new HintTextField("Enter Illness");
         outillness1.setBounds(80,120,300,40);
        final JTextField pres = new HintTextField("Enter Prescription");
        pres.setBounds(80,170,300,40);
         JButton outbutton1 = new JButton("Submit");
         outbutton1.setBounds(100,220,250,40);
-        
+        outbutton1.setBackground(Color.white);
         outform1.add(outlabel1);
         
         outform1.add(outillness1);
@@ -678,6 +739,7 @@ class MenuPage
         outform1.add(outid);
         outform1.add(outbutton2);
          outform1.add(pres);
+
         outbutton1.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent ae)
@@ -712,7 +774,8 @@ class MenuPage
         {
             public void actionPerformed(ActionEvent ae)
             {
-          pathistory = new DefaultTableModel();
+            	  pathdisplaypanel.setVisible(true);
+            	pathistory = new DefaultTableModel();
                 pathistory.addColumn("ID");   
                 pathistory.addColumn("Patient Id");                  
                 pathistory.addColumn("Illness");
@@ -744,9 +807,11 @@ class MenuPage
                     pattable = new JTable(pathistory);
 //                    billtablemodel.fireTableDataChanged();
                    patdisplayscroll= new JScrollPane(pattable);
-                    patdisplayscroll.setBounds(20,20,470,280);
+                    patdisplayscroll.setBounds(20,25,470,280);
+                    patdisplayscroll.setAutoscrolls(true);
                     pathdisplaypanel.add(patdisplayscroll);
-                }
+        pathdisplaypanel.setBackground(Color.white);        
+		}
                 catch(Exception e)
                 {
                     e.printStackTrace();                
@@ -765,43 +830,50 @@ class MenuPage
         
         
         
-           pathdisplaypanel= new JPanel();
+        pathdisplaypanel= new JPanel();
         pathdisplaypanel.setLayout(null);
         //billdisplaypanel.setBackground(Color.red);
         panel5.add(pathdisplaypanel);
-        pathdisplaypanel.setBounds(700,100,500,400);
+        pathdisplaypanel.setBounds(550,25,500,280);
         pathdisplaypanel.setBorder(new EtchedBorder(EtchedBorder.RAISED));
 		
 
+      
+        
+pathdisplaypanel.setBackground(Color.WHITE);
         
         
-
-        
-        
-        
+        pathdisplaypanel.setVisible(false);        
         panel5.add(outform1);
         
 //Images
-	 JPanel panel6 = new JPanel();
+	 JPanel panel6 = new JPanel()
+			 {
+		/* protected void paintComponent(Graphics g)
+		 {
+		 	super.paintComponent(g);
+		 	g.drawImage(img, 0, 0, null);
+		 }*/
+			 };
 	
      fc = new JFileChooser();
      
         panel6.setOpaque(true);
         panel6.setLayout(null);
-        //panel3.setBackground(Color.blue);
+        panel3.setBackground(Color.blue);
         panel6.setBounds(15,90,screenSize.width-10,screenSize.height-(screenSize.height/6));
         JPanel outform11= new JPanel();
         outform11.setLayout(null);
-        outform11.setBounds(0,25,810,460);
+        outform11.setBounds(400,150,400,300	);
         outform11.setBorder(new EtchedBorder(EtchedBorder.RAISED)); 
-        
+outform11.setBackground(Color.WHITE);        
         JLabel outlabel11 = new JLabel("Enter Details of Out Patient");
         outlabel11.setBounds(140,20,300,40);
-         final JTextField outid11 = new HintTextField("Enter id");
+        final JTextField outid11 = new HintTextField("Enter id");
         outid11.setBounds(80,70,300,40);
         JButton outbutton21 = new JButton("Check");
         outbutton2.setBounds(400,70,100,40);
-       
+       outbutton21.setBackground(Color.white);
         final JTextField outillness11 = new HintTextField("Enter Illness");
         outillness11.setBounds(80,120,300,40);
         final JTextField loc = new HintTextField("Location of Image");
@@ -811,7 +883,8 @@ class MenuPage
         JButton save = new JButton("Save");
         save.setBounds(400,220,250,40);
         outform11.add(outlabel1);
-        
+        save.setBackground(Color.white);
+        browse.setBackground(Color.white);
         outform11.add(outillness11);
         outform11.add(browse);
         outform11.add(outid11);
@@ -836,7 +909,8 @@ class MenuPage
 
 			
 		}
-	});  
+	}); 
+      
         save.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent ae)
@@ -866,11 +940,30 @@ class MenuPage
                 
             }
         });
-        panel6.add(outform11);
-        
+        panel6.add(outform11,BorderLayout.CENTER);
+     
+       
         //panel 7
-   	 JPanel panel7 = new JPanel();
- 	
+   	 JPanel panel7 = new JPanel()
+   			 
+   			 {
+/*protected void paintComponent(Graphics g)
+{
+	super.paintComponent(g);
+	g.drawImage(img, 0, 0, null);
+}*/
+
+   			 };   			
+
+   			 panel7.setBackground(new Color(7,53,70));
+   			 panel6.setBackground(new Color(7,53,70));
+   			 panel5.setBackground(new Color(7,53,70));
+   			 panel4.setBackground(new Color(7,53,70));
+   			 panel3.setBackground(new Color(7,53,70));
+   			 panel2.setBackground(new Color(7,53,70));
+   			 panel1.setBackground(new Color(7,53,70));
+   			
+   			 
      fc = new JFileChooser();
      
         panel7.setOpaque(true);
@@ -879,26 +972,28 @@ class MenuPage
         panel7.setBounds(15,90,screenSize.width-10,screenSize.height-(screenSize.height/6));
         JPanel outform7= new JPanel();
         outform7.setLayout(null);
-        outform7.setBounds(0,25,810,460);
+        outform7.setBackground(Color.white);
+        outform7.setBounds(400,150,400,300	);
         outform7.setBorder(new EtchedBorder(EtchedBorder.RAISED)); 
-        
+        outform7.setBackground(Color.white);
         JLabel outlabel7 = new JLabel("Enter Details of Out Patient");
         outlabel7.setBounds(140,20,300,40);
          final JTextField outid7 = new HintTextField("Enter id");
-        outid7.setBounds(80,70,300,40);
+        outid7.setBounds(80,70,200,40);
         JButton outbutton7 = new JButton("Check");
         outbutton7.setBounds(400,70,100,40);
-       
+       outbutton7.setBackground(Color.white);
         final JTextField outillness7 = new HintTextField("Enter Illness");
-        outillness7.setBounds(80,120,300,40);
+        outillness7.setBounds(80,120,200,40);
         final JTextField loc7 = new HintTextField("Location of Image");
-       loc7.setBounds(80,170,300,40);
+       loc7.setBounds(80,170,200,40);
         JButton browse7 = new JButton("Browse");
-        browse7.setBounds(100,220,250,40);
+        browse7.setBounds(100,220,100,40);
         JButton save7 = new JButton("Save");
-        save7.setBounds(400,220,250,40);
+        save7.setBounds(240,220,100,40);
         outform7.add(outlabel1);
-        
+        browse7.setBackground(Color.white);
+        save7.setBackground(Color.white);
         outform7.add(outillness7);
         outform7.add(browse7);
         outform7.add(outid7);
@@ -955,27 +1050,50 @@ class MenuPage
                 
             }
         });
-        panel7.add(outform7);
+        panel7.add(outform7,BorderLayout.CENTER);
         
         
         //add panels to tabpane
-        tabpane.setTabPlacement(SwingConstants.TOP);
-        
-	tabpane.setBackground(Color.WHITE);	
+        tabpane.setTabPlacement(SwingConstants.LEFT);
+        image = new ImageIcon("/home/shalom/NetBeansProjects/HospitalManagementSystem1/src/main/java/Images/a.jpg");
+        label = new JLabel("", image, JLabel.LEFT);
 	// Create vertical labels to render tab titles
-	tabpane.add(panel1,"<html><h1><b>NEW PATIENT</html>");
-        tabpane.add(panel2,"<html><h1><b>PATIENT Records</html>");
-        tabpane.add(panel3,"<html><h1><b>DOCTOR Records</html>");
-        tabpane.add(panel5,"<html><h1><b>Existing Patient<br>");
-        tabpane.add(panel4,"<html><h1><b>BILL Payments<br>");
-           tabpane.add(panel6,"<html><h1><b> Images");
-           tabpane.add(panel7,"<html><h1><b> Videos");
+	tabpane.addTab("NEW PATIENT", image,panel1,"<html><h1><b>NEW PATIENT");
+        tabpane.addTab("PATIENT Records",image,panel2,"<html><h1><b>PATIENT Records</html>");
+        tabpane.addTab("DOCTOR Records",image,panel3,"<html><h1><b>DOCTOR Records</html>");
+        tabpane.addTab("Existing Patient",image,panel4,"<html><h1><b>Existing Patient<br>");
+        tabpane.addTab("BILL Payments",image,panel5,"<html><h1><b>BILL Payments<br>");
+           tabpane.addTab("Images",image,panel6,"<html><h1><b> Images");
+           tabpane.addTab("Videos",image,panel7,"<html><h1><b> Videos");
+         
+         
+           tabpane.setBackgroundAt(0,new Color(194,212,218));
+           tabpane.setBackgroundAt(1,Color.white);
+           tabpane.setBackgroundAt(2,new Color(194,212,218));
+           tabpane.setBackgroundAt(3,Color.white);
+           tabpane.setBackgroundAt(4,new Color(194,212,218));
+           tabpane.setBackgroundAt(5,Color.white);
+           tabpane.setBackgroundAt(6,new Color(194,212,218));
+           
+       
+		tabpane.addChangeListener(new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				pathdisplaypanel.setVisible(false);
+				billdisplaypanel.setVisible(false);
+			}
+		}); 
+		
+		
+           
     //    tabpane.add(panel5,"<html>N<br>E<br>W<br>P<br>A<br>T<br>I<br>E<br>N<br>T</html>");
         
 //        menupageframe.pack();
         
         //add mainbodypanel
         menupageframe.add(mainbodypanel);
+        menupageframe.setVisible(true);
     }
 	
 	
